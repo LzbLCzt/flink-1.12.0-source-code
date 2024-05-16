@@ -28,7 +28,7 @@ import org.apache.flink.api.common.functions.Function;
 @Internal
 public class SimpleUdfStreamOperatorFactory<OUT> extends SimpleOperatorFactory<OUT> implements UdfStreamOperatorFactory<OUT> {
 
-	private final AbstractUdfStreamOperator<OUT, ?> operator;
+	private final AbstractUdfStreamOperator<OUT, ?> operator;	//todo 用户udf函数封装到这里
 
 	public SimpleUdfStreamOperatorFactory(AbstractUdfStreamOperator<OUT, ?> operator) {
 		super(operator);

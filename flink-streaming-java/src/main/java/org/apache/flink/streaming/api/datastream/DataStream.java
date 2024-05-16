@@ -1222,7 +1222,7 @@ public class DataStream<T> {
 			TypeInformation<R> outTypeInfo,
 			OneInputStreamOperator<T, R> operator) {
 
-		return doTransform(operatorName, outTypeInfo, SimpleOperatorFactory.of(operator));
+		return doTransform(operatorName, outTypeInfo, SimpleOperatorFactory.of(operator));	//todo StreamOperator封装到一个Factory中
 	}
 
 	/**
@@ -1254,6 +1254,7 @@ public class DataStream<T> {
 		// read the output type of the input Transform to coax out errors about MissingTypeInfo
 		transformation.getOutputType();
 
+		//todo new 一个新的Transformation，并把上一个算子的transformation（this.transformation）也封装到新的Transformation
 		OneInputTransformation<T, R> resultTransform = new OneInputTransformation<>(
 				this.transformation,
 				operatorName,
@@ -1262,9 +1263,9 @@ public class DataStream<T> {
 				environment.getParallelism());
 
 		@SuppressWarnings({"unchecked", "rawtypes"})
-		SingleOutputStreamOperator<R> returnStream = new SingleOutputStreamOperator(environment, resultTransform);
+		SingleOutputStreamOperator<R> returnStream = new SingleOutputStreamOperator(environment, resultTransform);	//todo 把Transformation封装到新的DataStream中
 
-		getExecutionEnvironment().addOperator(resultTransform);
+		getExecutionEnvironment().addOperator(resultTransform);	//todo 把新的Transformation添加到StreamExecutionEnvironment的transformations中，用于后续生成StreamGraph
 
 		return returnStream;
 	}

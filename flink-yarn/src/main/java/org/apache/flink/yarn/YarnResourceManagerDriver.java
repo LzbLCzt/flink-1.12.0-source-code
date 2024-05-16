@@ -221,7 +221,7 @@ public class YarnResourceManagerDriver extends AbstractResourceManagerDriver<Yar
 	}
 
 	@Override
-	public CompletableFuture<YarnWorkerNode> requestResource(TaskExecutorProcessSpec taskExecutorProcessSpec) {
+	public CompletableFuture<YarnWorkerNode> requestResource(TaskExecutorProcessSpec taskExecutorProcessSpec) {	//todo TaskExecutorProcessSpec封装Task Manager的资源情况
 		checkInitialized();
 
 		final CompletableFuture<YarnWorkerNode> requestResourceFuture = new CompletableFuture<>();
@@ -238,7 +238,8 @@ public class YarnResourceManagerDriver extends AbstractResourceManagerDriver<Yar
 		} else {
 			final Priority priority = priorityAndResourceOpt.get().getPriority();
 			final Resource resource = priorityAndResourceOpt.get().getResource();
-			resourceManagerClient.addContainerRequest(getContainerRequest(resource, priority));
+			//tdo resourceManagerClient: Yarn的RM客户端
+			resourceManagerClient.addContainerRequest(getContainerRequest(resource, priority)); 	//todo 向yarn的RM请求container
 
 			// make sure we transmit the request fast and receive fast news of granted allocations
 			resourceManagerClient.setHeartbeatInterval(containerRequestHeartbeatIntervalMillis);

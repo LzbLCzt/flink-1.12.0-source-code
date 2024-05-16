@@ -609,7 +609,7 @@ public class StreamGraphGenerator {
 		checkNotNull(translator);
 		checkNotNull(transform);
 
-		final List<Collection<Integer>> allInputIds = getParentInputIds(transform.getInputs());
+		final List<Collection<Integer>> allInputIds = getParentInputIds(transform.getInputs());	//todo 递归调用：先transform上游算子
 
 		// the recursive call might have already transformed this
 		if (alreadyTransformed.containsKey(transform)) {

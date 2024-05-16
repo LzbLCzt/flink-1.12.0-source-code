@@ -468,7 +468,7 @@ public class SlotManagerImpl implements SlotManager {
 				taskExecutorConnection,
 				reportedSlots);
 
-			taskManagerRegistrations.put(taskExecutorConnection.getInstanceID(), taskManagerRegistration);
+			taskManagerRegistrations.put(taskExecutorConnection.getInstanceID(), taskManagerRegistration);	//todo 注册新的TaskExecutor
 
 			// next register the new slots
 			for (SlotStatus slotStatus : initialSlotReport) {
@@ -667,8 +667,8 @@ public class SlotManagerImpl implements SlotManager {
 			SlotID slotId,
 			AllocationID allocationId,
 			JobID jobId,
-			ResourceProfile resourceProfile,
-			TaskExecutorConnection taskManagerConnection) {
+			ResourceProfile resourceProfile,	//todo 定义了slot的资源详情
+			TaskExecutorConnection taskManagerConnection    /* TODO: 用于和TaskExecutor通讯 */) {
 
 		if (slots.containsKey(slotId)) {
 			// remove the old slot first

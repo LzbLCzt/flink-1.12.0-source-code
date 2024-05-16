@@ -127,7 +127,7 @@ public class KeyedStream<T, KEY> extends DataStream<T> {
 	public KeyedStream(DataStream<T> dataStream, KeySelector<T, KEY> keySelector, TypeInformation<KEY> keyType) {
 		this(
 			dataStream,
-			new PartitionTransformation<>(
+			new PartitionTransformation<>(	//todo keyby算子对应的是PartitionTransformation
 				dataStream.getTransformation(),
 				new KeyGroupStreamPartitioner<>(keySelector, StreamGraphGenerator.DEFAULT_LOWER_BOUND_MAX_PARALLELISM)),
 			keySelector,

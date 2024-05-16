@@ -34,7 +34,7 @@ import static org.apache.flink.util.Preconditions.checkNotNull;
 @Internal
 public class SimpleOperatorFactory<OUT> extends AbstractStreamOperatorFactory<OUT> {
 
-	private final StreamOperator<OUT> operator;
+	private final StreamOperator<OUT> operator;		//todo 用户udf函数封装到这里
 
 	/**
 	 * Create a SimpleOperatorFactory from existed StreamOperator.
