@@ -39,7 +39,7 @@ public class IntermediateDataSet implements java.io.Serializable {
 	
 	private final IntermediateDataSetID id; 		// the identifier
 	
-	private final JobVertex producer;			// the operation that produced this data set
+	private final JobVertex producer;			// todo 上游的节点
 	
 	private final List<JobEdge> consumers = new ArrayList<JobEdge>();
 

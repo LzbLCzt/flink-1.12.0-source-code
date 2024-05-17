@@ -153,7 +153,10 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -187,7 +190,6 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="" name="Default" comment="" />
       <created>1612193982817</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -198,7 +200,8 @@
       <workItem from="1612312373365" duration="18076000" />
       <workItem from="1715222565771" duration="24413000" />
       <workItem from="1715657879365" duration="142000" />
-      <workItem from="1715663557422" duration="28657000" />
+      <workItem from="1715663557422" duration="30215000" />
+      <workItem from="1715914962383" duration="5880000" />
     </task>
     <servers />
   </component>
@@ -988,12 +991,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
-          <line>336</line>
+          <line>342</line>
           <option name="timeStamp" value="157" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
-          <line>418</line>
+          <line>424</line>
           <option name="timeStamp" value="158" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1386,7 +1389,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
-          <line>403</line>
+          <line>409</line>
           <option name="timeStamp" value="239" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1479,11 +1482,44 @@
           <line>52</line>
           <option name="timeStamp" value="261" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
+          <line>368</line>
+          <option name="timeStamp" value="262" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
+          <line>723</line>
+          <option name="timeStamp" value="264" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/flink-runtime/src/main/java/org/apache/flink/runtime/jobgraph/JobVertex.java</url>
+          <line>477</line>
+          <option name="timeStamp" value="265" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/flink-runtime/src/main/java/org/apache/flink/runtime/rpc/akka/AkkaRpcService.java</url>
           <line>98</line>
           <properties field="actorSystem" class="org.apache.flink.runtime.rpc.akka.AkkaRpcService" />
           <option name="timeStamp" value="213" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/flink-streaming-java/src/main/java/org/apache/flink/streaming/api/graph/StreamingJobGraphGenerator.java</url>
+          <line>794</line>
+          <properties class="org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator" method="isChainableInput">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="263" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/flink-runtime/src/main/java/org/apache/flink/runtime/jobgraph/JobVertex.java</url>
+          <line>456</line>
+          <properties class="org.apache.flink.runtime.jobgraph.JobVertex" method="createAndAddResultDataSet">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="266" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

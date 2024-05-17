@@ -67,10 +67,10 @@ public class JobVertex implements java.io.Serializable {
 	private final List<OperatorIDPair> operatorIDs;
 
 	/** List of produced data sets, one per writer. */
-	private final ArrayList<IntermediateDataSet> results = new ArrayList<>();
+	private final ArrayList<IntermediateDataSet> results = new ArrayList<>();	//IntermediateDataSet用于连接出边
 
 	/** List of edges with incoming data. One per Reader. */
-	private final ArrayList<JobEdge> inputs = new ArrayList<>();
+	private final ArrayList<JobEdge> inputs = new ArrayList<>();	//todo 入边
 
 	/** The list of factories for operator coordinators. */
 	private final ArrayList<SerializedValue<OperatorCoordinator.Provider>> operatorCoordinators = new ArrayList<>();
@@ -475,10 +475,10 @@ public class JobVertex implements java.io.Serializable {
 			DistributionPattern distPattern,
 			ResultPartitionType partitionType) {
 
-		IntermediateDataSet dataSet = input.createAndAddResultDataSet(partitionType);
+		IntermediateDataSet dataSet = input.createAndAddResultDataSet(partitionType);	//todo 上游节点创建IntermediateDataSet
 
-		JobEdge edge = new JobEdge(dataSet, this, distPattern);
-		this.inputs.add(edge);
+		JobEdge edge = new JobEdge(dataSet, this, distPattern);	//todo 创建上游节点的出边，当前节点的入边
+		this.inputs.add(edge);	//todo 当前节点添加入边
 		dataSet.addConsumer(edge);
 		return edge;
 	}

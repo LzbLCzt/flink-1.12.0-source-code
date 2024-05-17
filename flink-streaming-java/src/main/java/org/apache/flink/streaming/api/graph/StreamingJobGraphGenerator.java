@@ -128,7 +128,7 @@ public class StreamingJobGraphGenerator {
 	// 物理边集合（排除了chain内部的边）, 按创建顺序排序
 	private final List<StreamEdge> physicalEdgesInOrder;
 	// 保存chain信息，部署时用来构建 OperatorChain，startNodeId -> (currentNodeId -> StreamConfig)
-	private final Map<Integer, Map<Integer, StreamConfig>> chainedConfigs;
+	private final Map<Integer, Map<Integer, StreamConfig>> chainedConfigs;	//todo key: chain的头节点id, value: chain中每个节点的StreamConfig
 	// 所有节点的配置信息，id -> StreamConfig
 	private final Map<Integer, StreamConfig> vertexConfigs;
 	// 保存每个节点的名字，id -> chainedName
@@ -325,8 +325,14 @@ public class StreamingJobGraphGenerator {
 	 * <p>This will recursively create all {@link JobVertex} instances.
 	 */
 	private void setChaining(Map<Integer, byte[]> hashes, List<Map<Integer, byte[]>> legacyHashes) {
-		// we separate out the sources that run as inputs to another operator (chained inputs)
-		// from the sources that needs to run as the main (head) operator.
+		/* todo chainEntryPoints拿到每个链条的头节点，例如拓扑是：Source -> Map -> Filter -> KeyBy -> Reduce，
+		那么生成三个链条：
+		链1: Source -> Map -> Filter
+		链2: KeyBy
+		链3: Reduce，
+		todo chainEntryPoints拿到每个链条的头节点（Source、KeyBy、Reduce）
+		todo NOTE：这里只是根据算子类型初步生成链条，进一步的链条拆分在createChain完成
+		*/
 		final Map<Integer, OperatorChainInfo> chainEntryPoints = buildChainedInputsAndGetHeadInputs(hashes, legacyHashes);
 		final Collection<OperatorChainInfo> initialEntryPoints = new ArrayList<>(chainEntryPoints.values());
 
@@ -426,6 +432,7 @@ public class StreamingJobGraphGenerator {
 
 			} else {
 				/*TODO 如果是 chain 中的子节点*/
+				//todo 不会创建新的JobVertex
 				chainedConfigs.computeIfAbsent(startNodeId, k -> new HashMap<Integer, StreamConfig>());
 
 				config.setChainIndex(chainIndex);
@@ -714,7 +721,7 @@ public class StreamingJobGraphGenerator {
 
 		JobEdge jobEdge;
 		if (isPointwisePartitioner(partitioner)) {
-			jobEdge = downStreamVertex.connectNewDataSetAsInput(
+			jobEdge = downStreamVertex.connectNewDataSetAsInput(	//todo 构建jobEdge, 构建IntermediateDataSet,并将上下游节点相关关联: headVertex -> IntermediateDataSet -> JobEdge -> downStreamVertex
 				headVertex,
 				DistributionPattern.POINTWISE,
 				resultPartitionType);
@@ -784,6 +791,7 @@ public class StreamingJobGraphGenerator {
 				&& isChainableInput(edge, streamGraph);
 	}
 
+	//todo 判断能否chain的核心逻辑
 	private static boolean isChainableInput(StreamEdge edge, StreamGraph streamGraph) {
 		StreamNode upStreamVertex = streamGraph.getSourceVertex(edge);
 		StreamNode downStreamVertex = streamGraph.getTargetVertex(edge);
